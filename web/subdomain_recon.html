@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../java.js" />
+    <link
+      rel="shortcut icon"
+      href="/assets/Jurnals/favicon.png"
+      type="image/x-icon" />
+    <title>SUBDOMAIN RECON</title>
+    <style>
+      .navbar {
+        background-color: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-transparent">
+      <div class="navbar-container">
+        <ul class="navbar-menu">
+          <li class="nav-item">
+            <br />
+            <a href="/side/about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <br />
+            <a href="../index.html#post">Post</a>
+          </li>
+          <li class="nav-item">
+            <br />
+            <a href="../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <br />
+            <a href="/side/about.html#project">Project</a>
+          </li>
+          <li class="nav-item">
+            <br />
+            <a href="/side/about.html#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+
+    <!-- Top -->
+    <br /><br /><br /><br />
+    <section name="top" id="top">
+      <div class="container">
+        <br /><br /><br />
+        <div class="row">
+          <div class="col-6 col-t-12 text-center">
+            <img
+              src="../assets/Jurnals/SUBfinder & amass x httpx.png"
+              width="500"
+              height="500"
+              alt="simplectf"
+              class="rounded-4" />
+          </div>
+          <div class="col-6 align-self-center">
+            <h1>SUBDOMAIN ENUMERATION USING SUBFINDER AND AMASS</h1>
+            <p class="fw-lighter">15 July 2024</p>
+            <br />
+            <a href="../web/web.html">
+              <button type="button" class="btn btn-outline-light">
+                Web Pentest
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Top -->
+
+    <!-- Content -->
+    <br /><br /><br /><br /><br />
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-8">
+            <p class="fw-bold fs-3">Introduction:</p>
+            <!--  -->
+            <p>
+              Subdomain enumeration is a crucial step in the process of
+              assessing and securing web applications. By identifying and
+              analyzing all subdomains associated with a target domain, security
+              professionals can uncover potential vulnerabilities and entry
+              points for malicious actors. This process helps to ensure that no
+              hidden subdomains are overlooked during security assessments.
+            </p>
+            <p>
+              Subfinder and Amass are two powerful tools commonly used for
+              subdomain enumeration. Each offers unique features and
+              capabilities that, when used in conjunction, provide comprehensive
+              and accurate results.
+            </p>
+
+            <h4>Subfinder</h4>
+            <p>
+              Subfinder is a fast and reliable subdomain discovery tool written
+              in Go. It is designed to enumerate subdomains using passive online
+              sources and is known for its speed and simplicity. Key features of
+              Subfinder include:
+            </p>
+            <ul>
+              <li>
+                <p>
+                  Extensive Source Coverage: Subfinder integrates with a wide
+                  range of sources, including public archives, search engines,
+                  and various APIs, ensuring thorough subdomain discovery.
+                </p>
+              </li>
+              <li>
+                <p>
+                  High Performance: Leveraging Go’s concurrency, Subfinder
+                  delivers high-speed results without compromising accuracy.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Ease of Use: The tool offers a straightforward command-line
+                  interface, making it accessible to both beginners and
+                  experienced security professionals.
+                </p>
+              </li>
+            </ul>
+            <p>To use Subfinder, simply run the following command:</p>
+            <code>$ subfinder -d example.com </code>
+            <br />
+            <code
+              >$ subfinder -all -d domain-name -o output-filename1 -silent
+            </code>
+            <br /><br />
+
+            <h4>Amass</h4>
+            <p>
+              Amass is another robust subdomain enumeration tool, known for its
+              comprehensive approach and advanced capabilities. It uses both
+              passive and active methods to discover subdomains, making it a
+              versatile choice for thorough reconnaissance. Key features of
+              Amass include:
+            </p>
+            <ul>
+              <li>
+                <p>
+                  Hybrid Enumeration: Amass combines passive data sources with
+                  active enumeration techniques, such as DNS queries and
+                  brute-forcing, to maximize subdomain discovery.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Graph Database: Amass employs a graph database to organize and
+                  visualize relationships between subdomains, IP addresses, and
+                  other relevant data.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Customization and Extensibility: The tool provides extensive
+                  configuration options and supports custom scripts, allowing
+                  users to tailor the enumeration process to their specific
+                  needs.
+                </p>
+              </li>
+            </ul>
+            <p>To use Amass, execute the following command:</p>
+            <code>$ amass enum -d example.com </code>
+            <br />
+            <code
+              >$ amass enum -d domain-name | awk '$2 == "(FQDN)" {print $1}' >
+              output-filename2
+            </code>
+            <br /><br />
+
+            <h4>Combining Subfinder, Amass and Httpx</h4>
+            <p>
+              For the most effective subdomain enumeration, it is recommended to
+              use Subfinder and Amass together. By combining the strengths of
+              both tools, security professionals can achieve a more
+              comprehensive and accurate understanding of the target domain’s
+              subdomain landscape.
+            </p>
+            <p>Now, to find live subdomains, we will use httpx.</p>
+            <code>
+              cat outputfile | httpx -status-code -location -fc 404 -ss >
+              finaloutputfile
+            </code>
+            <br /><br />
+            <h4>Conclusion</h4>
+            <p>
+              In conclusion, subdomain enumeration using Subfinder and Amass is
+              an essential practice for any security professional. By leveraging
+              these powerful tools, organizations can enhance their security
+              posture, identify potential vulnerabilities, and protect their web
+              applications from malicious threats.
+            </p>
+            <!--  -->
+            <br /><br />
+          </div>
+          <div class="col-2"></div>
+        </div>
+      </div>
+    </section>
+    <!-- End Content -->
+  </body>
+</html>
